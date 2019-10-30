@@ -1,8 +1,6 @@
 // Your code goes here
 
 
-// TweenMax.to(".logo", 2, {left:600}); TweenMax stuff
-
 
 const funNav = document.querySelector(".nav-container");
 
@@ -12,6 +10,7 @@ funNav.addEventListener("mouseenter",
     funNav.style.transform
     ="scale(1.2)";
     funNav.style.transition ="all 0.3s"
+    event.stopPropagation();
 })
 
 //2! mouseover leave event
@@ -20,6 +19,7 @@ funNav.addEventListener("mouseleave",
      funNav.style.transform
      ="scale(1)";
      funNav.style.transition = "all 0.3s"
+     event.stopPropagation();
  })
 
  
@@ -58,8 +58,6 @@ console.log(resizeImages);
 
 let isDragging = false;
 
-
-//7! mousedown event
 document.addEventListener('mousedown', function(event) {
 
   let dragElement = event.target.closest('.img-content');
@@ -89,9 +87,9 @@ document.addEventListener('mousedown', function(event) {
     }
 
     isDragging = true;
-//8! mouse move event
+
     document.addEventListener('mousemove', onMouseMove);
-    //9! mouse up event
+  
     element.addEventListener('mouseup', onMouseUp);
 
     shiftX = clientX - element.getBoundingClientRect().left;
@@ -136,7 +134,7 @@ function moveAt(clientX, clientY) {
     window.scrollBy(0, scrollY);
 
    
-    // limit the new Y
+    // limits the new Y
     newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
   }
 
@@ -163,20 +161,42 @@ function moveAt(clientX, clientY) {
 });
 
 
-//10! keydown event 
+//7! keydown event 
 const colorChange = document.querySelector(".content-destination");
 
 document.addEventListener("keydown", event =>{
     if(event.isComposing || event.keycode === 121){
         return;
     }
-    colorChange.style.background = "skyblue"
+    colorChange.style.background = "turquoise"
+});
+
+//8! keyup event
+const textChange = document.querySelector(".content-pick");
+document.addEventListener("keyup", event =>
+{
+  if(event.isComposing || event.keyCode === 121){
+    return;
+  }
+  textChange.textContent = "WOWWWWWW"
+ textChange.style.fontSize += "70px";
 });
 
 
 
+//9!
+const cutAlert = document.querySelector("p");
+document.addEventListener ('cut', (event) =>{
+  cutAlert.style.backgroundColor = 'red'
+  console.log('CUTTING HAPPENED!');
+})
 
 
-
+//10!
+const copyAlert = document.querySelector ("footer");
+document.addEventListener ('copy', (event) =>{
+  copyAlert.style.backgroundColor = 'yellow'
+  console.log('COPYING HAPPENED!')
+})
 
 

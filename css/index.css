@@ -316,6 +316,11 @@ img {
     flex-wrap: wrap;
   }
 }
+.home .content-pick canvas {
+  border: 1px solid black;
+  width: 560px;
+  height: 360px;
+}
 .home .content-pick .destination {
   width: 30%;
   margin-bottom: 30px;
